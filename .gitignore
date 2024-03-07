@@ -1,2 +1,2 @@
-./Project/Backend/node_modules
-./Project/Frontend/vite-project/node_modules
+/Backend/node_modules/**
+/Frontend/vite-project/node_modules/**

@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+
 import globe from "./globe.png";
 import google from "./google.png";
 import facebook from "./facebook.png";
 import apple from "./apple.png";
-import Call_Api from "../Modules/modules";
+import Call_Api from "../../Modules/modules";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function login() {
   const [mail, setmail] = useState("");
-
+  const nav=useNavigate("");
   const [pass, setpass] = useState("");
 
   const get_email = (e) => {
@@ -20,10 +22,11 @@ function login() {
 
   const send_data = async () => {
     const res = await Call_Api(mail, pass);
-    
+
     if (res.data == "not authorized") alert("User not Authroized");
     else {
       localStorage.setItem("token", res.data);
+       nav("/home");
     }
   };
   return (

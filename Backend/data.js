@@ -6,7 +6,7 @@ const data=
       },
       {
         "email": "aayush@gmail.com",
-        "password": "22"
+        "password": "Aayush@123"
       },
       {
         "email": "user3@example.com",

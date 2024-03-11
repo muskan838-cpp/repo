@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import Login from "./components/Login/login";
+import Login from "./pages/Login/login";
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home/home";
+import Headers from "./components/Headers/Views/index"
+import Home from "./pages/Home/home";
 function App() {
   const [count, setCount] = useState(0);
  
   return (
+
     <>
       <Routes>
         <Route path="/" element={<Login />} />

@@ -4,9 +4,12 @@ const app = express();
 const parser = require("body-parser");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
+const prod_Details=require("./Prod_details")
 const secretKey = "M123A";
 app.use(cors());
 app.use(parser.json());
+
+app.use(express.static('Public'))
 app.post("/", (req, res) => {
   console.log(req.body);
   console.log(req.body.password);
@@ -23,9 +26,12 @@ app.post("/", (req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
-  res.send("heelo");
-  console.log("jufr");
-});
+
+
+app.get("/",(req,res)=>
+{
+        res.json(prod_Details);
+})
+
 
 app.listen(3000);

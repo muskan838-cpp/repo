@@ -25,18 +25,18 @@ function hero() {
               Shop Now
             </button>
 
-            <div className="flex mt-14 pb-24 flex-wrap">
-              <div>
+            <div className="w-full lg:flex-nowrap flex mt-14 pb-24 flex-wrap">
+              <div className="pl-5 pr-5">
                 <h1 className="text-4xl font-bold">200+</h1>
                 <p className="text-gray-600">International Brands</p>
               </div>
 
-              <div className="">
+              <div className="pl-3 pr-3">
                 <h1 className="text-4xl font-bold">2,000+</h1>
                 <p className="text-gray-600">High-Quality Products</p>
               </div>
 
-              <div className="">
+              <div className="pl-3 pr-3">
                 <h1 className="text-4xl font-bold">30,000+</h1>
                 <p className="text-gray-600">Happy Customers</p>
               </div>
@@ -59,7 +59,7 @@ function hero() {
         </div>
       </div>
       <div className="bg-black w-full pl-28 pt-10 flex justify-center">
-        <div className="w-11/12 justify-around flex">
+        <div className="w-11/12 justify-around lg:flex-nowrap flex">
           <img src={Versace} className="w-1/12 h-1/2"></img>
           <img src={Zara} className="w-1/12 h-1/2"></img>
           <img src={Gucci} className="w-1/12 h-1/2"></img>

@@ -1,13 +1,12 @@
-import Header from "../../../../components/Headers/Views/index"
-import React from 'react'
+import Header from "../../../../components/Headers/index";
+import React from "react";
 
 function header() {
   return (
     <div>
-      <Header/>
+      <Header />
     </div>
-  )
+  );
 }
 
-export default header
-
+export default header;

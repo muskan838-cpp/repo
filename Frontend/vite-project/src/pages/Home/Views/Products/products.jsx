@@ -5,19 +5,25 @@ import Orange_tshirt from "../../../../Assets/Orange_tshirt.png";
 import pent from "../../../../Assets/pent.png";
 import axios from "axios";
 import api from "../../../../API/Api";
+import { useNavigate } from "react-router-dom";
 
 function Products(props) {
   const [response, setResponse] = useState([]);
+  const nav = useNavigate("");
+
   const call = async () => {
     const response = await axios.get(api.url);
-    console.log(response.data.Products);
-    setResponse(response.data.Products);
+    console.log(response.data);
+    setResponse(response.data);
   };
 
   useEffect(() => {
     call();
   }, []);
 
+  const handleClick = (p_id) => {
+    nav(`Product_Details/${p_id}`);
+  };
   return (
     <>
       <div className="pt-20">
@@ -26,11 +32,14 @@ function Products(props) {
         </div>
         <div className="w-full flex justify-center ">
           <div className="flex w-5/6 justify-around mt-20 flex-wrap ">
-            {response.map((val) => {
+            {response?.map((val) => {
               console.log(val.Image);
               return (
                 <>
-                  <div className="block lg:pb-2 pb-12">
+                  <button
+                    className="block lg:pb-2 pb-12"
+                    onClick={() => handleClick(val.Id)}
+                  >
                     <div>
                       <img
                         className="rounded-3xl"
@@ -47,7 +56,7 @@ function Products(props) {
                         ${val.Price}
                       </p>
                     </div>
-                  </div>
+                  </button>
                 </>
               );
             })}

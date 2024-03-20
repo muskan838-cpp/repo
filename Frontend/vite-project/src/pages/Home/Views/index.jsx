@@ -5,7 +5,7 @@ import React from "react";
 import Top_Selling from "./Top_Selling/index";
 import Dress_Style from "./Dress_Style/dress";
 import Customers_Reviews from "./Customers_Reviews/index";
-import Footer from "./Footer/index";
+import Footer from "../../../components/Footer/index";
 function Home_View() {
   return (
     <div>

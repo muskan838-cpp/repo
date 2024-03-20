@@ -5,15 +5,19 @@ import Orange_tshirt from "../../../../Assets/Orange_tshirt.png";
 import pent from "../../../../Assets/pent.png";
 import axios from "axios";
 import api from "../../../../API/Api";
+import { useNavigate } from "react-router-dom";
 
 function Products(props) {
+  const nav = useNavigate();
   const [response, setResponse] = useState([]);
   const call = async () => {
     const response = await axios.get(api.url);
-    console.log(response.data.Products);
-    setResponse(response.data.Products);
+    console.log(response.data);
+    setResponse(response.data);
   };
-
+  const handleClick = (p_id) => {
+    nav(`Product_Details/${p_id}`);
+  };
   useEffect(() => {
     call();
   }, []);
@@ -30,19 +34,27 @@ function Products(props) {
               console.log(val.Image);
               return (
                 <>
-                  <div className="block lg:pb-2 pb-12">
+                  <button
+                    className="block lg:pb-2 pb-12"
+                    onClick={() => handleClick(val.Id)}
+                  >
                     <div>
                       <img
                         className="rounded-3xl"
                         src={`http://localhost:3000/${val.Image}`}
                       ></img>
                     </div>
-                     
-                    <p className="text-s font-bold tracking-normal mt-2">{val.Name}</p>
-                    <div className="flex ml-1"><p className="text-xl font-bold mt-1">${val.Price}</p>
-                    <p className="text-xl font-bold mt-1 ml-2 text-gray-400 line-through">${val.Price}</p>
+
+                    <p className="text-s font-bold tracking-normal mt-2">
+                      {val.Name}
+                    </p>
+                    <div className="flex ml-1">
+                      <p className="text-xl font-bold mt-1">${val.Price}</p>
+                      <p className="text-xl font-bold mt-1 ml-2 text-gray-400 line-through">
+                        ${val.Price}
+                      </p>
                     </div>
-                  </div>
+                  </button>
                 </>
               );
             })}

@@ -2,7 +2,10 @@ import React from "react";
 import search from "../../../Assets/Frame.png";
 import cart from "../../../Assets/Vector.png";
 import profile from "../../../Assets/Cart.png";
+import {  useSelector } from "react-redux";
 function Home() {
+
+  const ans=useSelector((state)=>state.product)
   return (
     <>
       <div className="w-screen flex justify-center h-28 pt-6 lg:pl-32 pl-12">
@@ -32,6 +35,8 @@ function Home() {
             <img className="ml-5" src={profile}></img>
           </div>
         </div>
+
+        {ans}
       </div>
     </>
   );

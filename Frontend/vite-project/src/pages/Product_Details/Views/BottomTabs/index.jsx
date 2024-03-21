@@ -6,10 +6,14 @@ import ProductDetails from "./productDetails/index";
 import axios from "axios";
 import api from "../../../../API/Api";
 import { useParams } from "react-router-dom";
+import MyContext from "../../../../context/reviewsContext";
+import Header from "../../../../components/Headers";
+
 function Bottom() {
   const param = useParams();
   const [reviews, setReviews] = useState([]);
   const [active, setActive] = useState(false);
+  const [data, setData] = useState();
   const handler = () => {
     setActive(!active);
     faqActive == true ? setFaqActive(!faqActive) : setFaqActive(faqActive);
@@ -37,10 +41,13 @@ function Bottom() {
       id: param.id,
     });
     setReviews(res);
+    setData(res.data[0]);
+    // console.log(data);
   }
   useEffect(() => {
     getReviews();
   }, []);
+
   return (
     <>
       <div className="w-full mt-12">
@@ -75,7 +82,9 @@ function Bottom() {
       ) : faqActive ? (
         <Frequently />
       ) : (
-        <Ratingreviews/>
+        <MyContext.Provider value={data}>
+          <Ratingreviews />
+        </MyContext.Provider>
       )}
     </>
   );

@@ -3,11 +3,13 @@ import api from "../../../../API/Api";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../../Core/Redux/Slices/CartSlice";
 
 function Hero() {
   const [Product, setProduct] = useState(undefined);
   const [count, setCount] = useState(1);
-
+  const dispatch=useDispatch();
   const param = useParams();
   const getData = async () => {
     const response = await axios.get(api.url);
@@ -22,6 +24,7 @@ function Hero() {
 
   const increment = () => {
     setCount(count + 1);
+    dispatch(addToCart(Product?.Image,Product?.name,Product?.price))
   };
   const decrement = () => {
     count > 0 ? setCount(count - 1) : setCount(count);

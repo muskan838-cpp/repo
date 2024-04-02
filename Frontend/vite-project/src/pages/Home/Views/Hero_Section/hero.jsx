@@ -11,8 +11,8 @@ function hero() {
   return (
     <>
       <div className=" bg-[#F2F1F0] w-screen lg:flex block">
-        <div className="lg:w-1/2 w-screen lg:pl-48 pl-12 pt-14 sm:w-screen">
-          <div className="w-2/3 ">
+        <div className="lg:w-1/2 w-screen lg:pl-24 pl-12 pt-14 sm:w-screen">
+          <div className="lg:w-11/12 ">
             <div className="w-full text-6xl font-extrabold leading-[64px]">
               FIND CLOTHES THAT MATCHES YOUR STYLE
             </div>
@@ -49,7 +49,7 @@ function hero() {
 
           <img
             src={back}
-            className="lg:w-8/12 lg:ml-6 lg:h-11/12 w-[900px]"
+            className="lg:w-3/4 lg:ml-6 lg:h-11/12 w-[1500px]"
           ></img>
 
           <img

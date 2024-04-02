@@ -35,4 +35,39 @@ app.post("/review", (req, res) => {
   res.json(ans);
 });
 
+app.post("/filters", (req, res) => {
+  const dressTypes = [];
+  Products.map((val) => {
+    req.body.filters.map((category) => {
+      if (category === val.type) dressTypes.push(val);
+    });
+  });
+  const dressStyle = [];
+  dressTypes.map((val) => {
+    req.body.style.map((element) => {
+      if (val.style === element) {
+        dressStyle.push(val);
+      }
+    });
+  });
+  const dressPrice = [];
+
+  dressStyle.map((val) => {
+    console.log(req.body.minVal);
+    if (val.Price >= req.body.minVal && val.Price <= req.body.maxVal) {
+      dressPrice.push(val);
+    }
+  });
+  const filteredProducts = [];
+  dressPrice.map((val) => {
+    req.body.sizes.map((element) => {
+      if (val.sizes.includes(element)) {
+        filteredProducts.push(dressPrice);
+      }
+    });
+  });
+  console.log(dressPrice);
+  res.json(filteredProducts);
+});
+
 app.listen(3000);

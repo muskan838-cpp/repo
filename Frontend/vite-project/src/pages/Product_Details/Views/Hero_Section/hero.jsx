@@ -9,7 +9,8 @@ import { addToCart } from "../../../../Core/Redux/Slices/CartSlice";
 function Hero() {
   const [Product, setProduct] = useState(undefined);
   const [count, setCount] = useState(1);
-  const dispatch=useDispatch();
+  const [size, setSize] = useState("");
+  const dispatch = useDispatch();
   const param = useParams();
   const getData = async () => {
     const response = await axios.get(api.url);
@@ -20,21 +21,33 @@ function Hero() {
   };
   useEffect(() => {
     getData();
-  }, []);
+  }, [param.id]);
 
   const increment = () => {
     setCount(count + 1);
-    dispatch(addToCart(Product?.Image,Product?.name,Product?.price))
   };
   const decrement = () => {
     count > 0 ? setCount(count - 1) : setCount(count);
   };
 
+  const helper = () => {
+    dispatch(
+      addToCart({
+        Id:Product?.Id,
+        Image: Product?.Image,
+        Name: Product?.Name,
+        Price: Product?.Price,
+        offerPrice:Product?.offerPrice,
+        numberOfProducts: count,
+        Size: size,
+      })
+    );
+  };
   return (
     <>
-      <div className="w-full flex justify-center lg:pl-32 pl-12">
-        <div className="w-full flex">
-          <div className="flex w-1/2  ">
+      <div className="w-full flex justify-center lg:pl-24 pl-12">
+        <div className="w-full lg:flex flex-wrap">
+          <div className="flex lg:w-1/2 w-full">
             <div className="w-1/5">
               <img
                 className="w-full pb-5"
@@ -61,11 +74,11 @@ function Hero() {
             </div>
           </div>
 
-          <div className="w-1/2">
-            <div className="text-4xl font-bold leading-10 mt-8">
+          <div className="lg:w-1/2 w-full">
+            <div className="text-4xl font-bold leading-10 mt-3">
               {Product?.Name}
             </div>
-            <div className="mt-3">
+            <div className="mt-2">
               <ReactStars
                 count={5}
                 size={24}
@@ -87,53 +100,53 @@ function Hero() {
               <p className="text-gray-400">{Product?.desc}</p>
             </div>
             <div>
-              <div className="border rounded w-8/12 mt-8"></div>
+              <div className="border rounded lg:w-8/12 w-11/12 mt-5"></div>
             </div>
             <div>
               <p className="text-gray-400 mt-3">Choose Size</p>
-              <div className="flex mt-3">
+              <div className="flex mt-2">
                 {Product?.sizeSmall === "exist" ? (
-                  <button className="mr-3 text-base p-3 w-1/6 rounded-full bg-black text-white ">
+                  <button onClick={()=>setSize("Small")} className="mr-3 text-base p-3 lg:w-1/6 w-1/4  rounded-full bg-black text-white ">
                     Small
                   </button>
                 ) : (
-                  <button className="cursor-not-allowed mr-3 text-base p-3 w-1/6 rounded-full bg-[#F0F0F0] text-black">
+                  <button className="cursor-not-allowed  mr-3 text-base p-3 lg:w-1/6 w-1/4  rounded-full bg-[#F0F0F0] text-black">
                     Small
                   </button>
                 )}
                 {Product?.sizeMedium === "exist" ? (
-                  <button className="mr-3 text-base p-3 w-1/6 rounded-full bg-black text-white ">
+                  <button onClick={()=>setSize("Medium")} className="mr-3 text-base p-3 lg:w-1/6 w-1/4 rounded-full bg-black text-white ">
                     Medium
                   </button>
                 ) : (
-                  <button className="cursor-not-allowed  mr-3 text-base p-3 w-1/6 rounded-full bg-[#F0F0F0] text-black">
+                  <button className="cursor-not-allowed  mr-3 text-base p-3 lg:w-1/6 w-1/4 rounded-full bg-[#F0F0F0] text-black">
                     Medium
                   </button>
                 )}
                 {Product?.sizeLarge === "exist" ? (
-                  <button className="mr-3 text-base p-3 w-1/6 rounded-full bg-black text-white ">
+                  <button className="mr-3 text-base p-3 lg:w-1/6 w-1/4  rounded-full bg-black text-white ">
                     Large
                   </button>
                 ) : (
-                  <button className="cursor-not-allowed mr-3 text-base p-3 w-1/6 rounded-full bg-[#F0F0F0] text-black focus:outline-none   ">
+                  <button onClick={()=>setSize("Large")} className="cursor-not-allowed mr-3 text-base p-3 lg:w-1/6 w-1/4  rounded-full bg-[#F0F0F0] text-black focus:outline-none   ">
                     Large
                   </button>
                 )}
                 {Product?.sizeXLarge === "exist" ? (
-                  <button className="mr-3 text-base p-3 w-1/6 rounded-full bg-black text-white ">
+                  <button onClick={()=>setSize("X-Large")} className="mr-3 text-base p-3 lg:w-1/6 w-1/4  rounded-full bg-black text-white ">
                     X-Large
                   </button>
                 ) : (
-                  <button className="cursor-not-allowed mr-3 text-base p-3 w-1/6 rounded-full bg-[#F0F0F0] text-black">
+                  <button className="cursor-not-allowed mr-3 text-base p-3 lg:w-1/6 sm:w-1/4 md:1/2 rounded-full bg-[#F0F0F0] text-black">
                     X-Large
                   </button>
                 )}
               </div>
               <div>
-                <div className="border rounded w-8/12 mt-8"></div>
+                <div className="border rounded lg:w-8/12 w-11/12 mt-3"></div>
               </div>
-              <div className="flex mt-8">
-                <div className="flex mr-12 text-base p-2 w-1/6 rounded-full bg-[#F0F0F0]  justify-between pl-3 ">
+              <div className="flex mt-5">
+                <div className="flex mr-12 text-base p-2 lg:w-1/5 w-1/4 rounded-full bg-[#F0F0F0]  justify-between pl-3 ">
                   <button className="text-2xl" onClick={increment}>
                     +
                   </button>
@@ -142,7 +155,10 @@ function Hero() {
                     -
                   </button>
                 </div>
-                <button className="w-5/12 mr-1 text-base p-3 rounded-full bg-black text-white flex justify-center">
+                <button
+                  onClick={helper}
+                  className="lg:w-5/12 w-1/2 mr-1 text-base p-3 rounded-full bg-black text-white flex justify-center"
+                >
                   Add to Cart
                 </button>
               </div>

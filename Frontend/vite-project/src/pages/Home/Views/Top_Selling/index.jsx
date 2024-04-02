@@ -29,7 +29,7 @@ function Products(props) {
           <h1 className="text-5xl font-bold">Top Selling</h1>
         </div>
         <div className="w-full flex justify-center ">
-          <div className="flex w-5/6 justify-around mt-20 flex-wrap">
+          <div className="flex w-11/12 justify-around mt-20 flex-wrap">
             {response.map((val) => {
               console.log(val.Image);
               return (

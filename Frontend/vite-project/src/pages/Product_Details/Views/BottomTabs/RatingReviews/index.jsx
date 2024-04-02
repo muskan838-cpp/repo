@@ -14,12 +14,12 @@ function Rating() {
         <div className="w-11/12 border rounded"></div>
       </div>
       <div className="w-full flex justify-center ">
-        <div className="w-10/12 flex flex-wrap">
+        <div className="w-11/12 lg:flex lg:flex-wrap">
           {productData?.reviews?.map((item) => {
             if (item)
               return (
                 <>
-                  <div className="w-1/2 ">
+                  <div className="lg:w-1/2 w-full">
                     <Product_Reviews
                       name={item?.name}
                       review={item?.review}
@@ -32,7 +32,7 @@ function Rating() {
           })}
 
           <div className="w-full flex justify-center pt-12">
-            <button className="mr-3 text-base p-3 w-1/6 rounded-full bg-[#F0F0F0] text-black ">
+            <button className="mr-3 text-base p-3 lg:w-1/6 w-1/2 rounded-full bg-[#F0F0F0] text-black ">
               Load More Reviews
             </button>
           </div>

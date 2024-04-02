@@ -22,16 +22,16 @@ function Products(props) {
   }, []);
 
   const handleClick = (p_id) => {
-    nav(`Product_Details/${p_id}`);
+    nav(`/home/Product_Details/${p_id}`);
   };
   return (
     <>
       <div className="pt-20">
         <div className="lg:w-11/12 w-8/12 justify-center flex ml-20">
-          <h1 className="text-5xl font-bold">{props.title}</h1>
+          <h1 className="text-5xl font-bold lg:ml-0  ml-9">{props.title}</h1>
         </div>
         <div className="w-full flex justify-center ">
-          <div className="flex w-5/6 justify-around mt-20 flex-wrap ">
+          <div className="flex w-11/12 justify-around mt-20 flex-wrap ">
             {response?.map((val) => {
               console.log(val.Image);
               return (
@@ -65,7 +65,7 @@ function Products(props) {
       </div>
 
       <div className="w-full flex justify-center">
-        <button className="bg-white lg:w-1/12 w-1/6 h-12 mt-12 rounded-3xl text-black border">
+        <button className="bg-white lg:w-1/12 w-1/3 h-12 mt-12 rounded-3xl text-black border">
           View All
         </button>
       </div>

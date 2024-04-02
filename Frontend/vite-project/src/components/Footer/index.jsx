@@ -7,18 +7,18 @@ function Footer() {
   return (
     <>
       <div className="w-full mt-20 flex justify-center relative top-16 z-10">
-        <div className="w-10/12  bg-black rounded-3xl p-12 flex">
+        <div className="w-10/12  bg-black rounded-3xl p-12 lg:flex">
           <div className="w-11/12">
             <p className="text-white text-5xl w-3/4  font-extrabold leading-[60px] pl-20">
               STAY UPTO DATE ABOUT OUR LATEST OFFERS
             </p>
           </div>
 
-          <div className="w-2/4">
-            <div className="bg-white  flex w-3/4 rounded-3xl p-3 pl-10">
+          <div className="lg:w-2/4 sm:w-10/12 sm: mt-12 lg:mt-0">
+            <div className="bg-white  flex lg:w-3/4 w-full rounded-3xl p-3 pl-10">
               <input type="email" placeholder="Enter Your Email"></input>
             </div>
-            <div className="bg-white mt-8 w-3/4 rounded-3xl p-3 justify-center flex">
+            <div className="bg-white mt-8 lg:w-3/4 w-full rounded-3xl p-3 justify-center flex">
               Subscribe to Newsletter
             </div>
           </div>

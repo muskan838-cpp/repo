@@ -33,16 +33,18 @@ function Hero() {
   const helper = () => {
     dispatch(
       addToCart({
-        Id:Product?.Id,
+        Id: Product?.Id,
         Image: Product?.Image,
         Name: Product?.Name,
         Price: Product?.Price,
-        offerPrice:Product?.offerPrice,
+        offerPrice: Product?.offerPrice,
         numberOfProducts: count,
         Size: size,
       })
     );
   };
+
+  
   return (
     <>
       <div className="w-full flex justify-center lg:pl-24 pl-12">
@@ -106,7 +108,10 @@ function Hero() {
               <p className="text-gray-400 mt-3">Choose Size</p>
               <div className="flex mt-2">
                 {Product?.sizeSmall === "exist" ? (
-                  <button onClick={()=>setSize("Small")} className="mr-3 text-base p-3 lg:w-1/6 w-1/4  rounded-full bg-black text-white ">
+                  <button
+                    onClick={() => setSize("Small")}
+                    className="mr-3 text-base p-3 lg:w-1/6 w-1/4  rounded-full bg-black text-white "
+                  >
                     Small
                   </button>
                 ) : (
@@ -115,7 +120,10 @@ function Hero() {
                   </button>
                 )}
                 {Product?.sizeMedium === "exist" ? (
-                  <button onClick={()=>setSize("Medium")} className="mr-3 text-base p-3 lg:w-1/6 w-1/4 rounded-full bg-black text-white ">
+                  <button
+                    onClick={() => setSize("Medium")}
+                    className="mr-3 text-base p-3 lg:w-1/6 w-1/4 rounded-full bg-black text-white "
+                  >
                     Medium
                   </button>
                 ) : (
@@ -128,12 +136,18 @@ function Hero() {
                     Large
                   </button>
                 ) : (
-                  <button onClick={()=>setSize("Large")} className="cursor-not-allowed mr-3 text-base p-3 lg:w-1/6 w-1/4  rounded-full bg-[#F0F0F0] text-black focus:outline-none   ">
+                  <button
+                    onClick={() => setSize("Large")}
+                    className="cursor-not-allowed mr-3 text-base p-3 lg:w-1/6 w-1/4  rounded-full bg-[#F0F0F0] text-black focus:outline-none   "
+                  >
                     Large
                   </button>
                 )}
                 {Product?.sizeXLarge === "exist" ? (
-                  <button onClick={()=>setSize("X-Large")} className="mr-3 text-base p-3 lg:w-1/6 w-1/4  rounded-full bg-black text-white ">
+                  <button
+                    onClick={() => setSize("X-Large")}
+                    className="mr-3 text-base p-3 lg:w-1/6 w-1/4  rounded-full bg-black text-white "
+                  >
                     X-Large
                   </button>
                 ) : (
@@ -161,6 +175,7 @@ function Hero() {
                 >
                   Add to Cart
                 </button>
+               
               </div>
             </div>
           </div>

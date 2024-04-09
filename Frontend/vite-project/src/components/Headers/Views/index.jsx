@@ -40,7 +40,7 @@ function Home() {
           </div>
           <div className="flex">
             <img src={cart} className="lg:ml-16 ml-2"></img>
-            <img onClick={handleClick} className="ml-5" src={profile}></img>
+            <img onClick={handleClick} className="ml-5 cursor-pointer" src={profile}></img>
           </div>
         </div>
       </div>

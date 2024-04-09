@@ -1,10 +1,22 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import globe from "../../../Assets/globe.png";
 import google from "../../../Assets/google.png";
 import facebook from "../../../Assets/facebook.png";
 import apple from "../../../Assets/apple.png";
+import { useNavigate } from "react-router-dom";
 function login({ get_email, get_pass, send_data }) {
+  const nav = useNavigate();
+
+  const handler = () => {
+    nav("/register");
+  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   return (
     <>
       <div className="w-full h-screen flex justify-center items-center">
@@ -43,39 +55,62 @@ function login({ get_email, get_pass, send_data }) {
           </div>
 
           <div className="ml-5 mt-4 w-full">
-            <div className="mt-3">
-              <p className="text-s font-sans mt-4">Email Adress</p>
-              <input
-                onChange={get_email}
-                className="w-4/5 rounded-lg border h-11 mt-2 ml-2 pl-2"
-                type="email"
-                placeholder="Enter your email"
-              ></input>
-            </div>
+            <form
+              onSubmit={handleSubmit((val) => {
+                console.log(val);
+                send_data(val);
+              })}
+            >
+              <div className="mt-3">
+                <p className="text-s font-sans mt-4">Email Adress</p>
+                <input
+                  className="w-4/5 rounded-lg border h-11 mt-2 ml-2 pl-2"
+                  type="email"
+                  placeholder="Enter your email"
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value:
+                        /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
+                      message: "invalid email address",
+                    },
+                  })}
+                ></input>
+                {errors.email && (
+                  <p className="text-red-500 ml-2">{errors?.email?.message}</p>
+                )}
+              </div>
 
-            <div className="mt-3">
-              <p className="text-s font-sans mt-4 ">Password</p>
-              <input
-                onChange={get_pass}
-                className="w-4/5 rounded-lg border h-11 mt-2 ml-2 pl-2"
-                type="text"
-                placeholder="******"
-              ></input>
-            </div>
+              <div className="mt-3">
+                <p className="text-s font-sans mt-4 ">Password</p>
+                <input
+                  className="w-4/5 rounded-lg border h-11 mt-2 ml-2 pl-2"
+                  type="text"
+                  placeholder="******"
+                  {...register("password", {
+                    required: "password is required",
+                  })}
+                ></input>
+                {errors.password && <p>{errors?.password?.message}</p>}
+              </div>
+              <button
+                type="submit"
+                className="w-11/12 bg-black rounded-lg text-white h-12 mt-6"
+              >
+                Sign in
+              </button>
+            </form>
           </div>
 
           <div className="border-t w-full mt-9"></div>
-
-          <button
-            onClick={send_data}
-            className="w-11/12 bg-black rounded-lg text-white h-12 ml-5 mt-6"
-          >
-            Sign in
-          </button>
-
           <div className="flex mt-5 w-full items-center justify-center mb-7">
             <p className="text-xs">Don't have an account?</p>
-            <a className="text-blue-500 text-xs ml-3">Create Account</a>
+            <a
+              className="text-blue-500 text-xs ml-3 cursor-pointer"
+              onClick={handler}
+            >
+              Create Account
+            </a>
           </div>
         </div>
       </div>
